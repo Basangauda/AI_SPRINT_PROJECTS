@@ -339,7 +339,7 @@ Add `vitest.config.ts` at the repo root (see `.cursor/skills/testing/SKILL.md`) 
 
 ---
 
-### Phase 2: Core Library Layer - PLANNED
+### Phase 2: Core Library Layer - COMPLETED
 
 **Objective:** Password hashing, validation, and UserService implemented with full unit test coverage.
 
@@ -376,9 +376,9 @@ Add `vitest.config.ts` at the repo root (see `.cursor/skills/testing/SKILL.md`) 
 
 #### Phase exit criteria
 
-- [ ] `npm run test` passes (password, validator, user-service tests green)
-- [ ] No API response or public user object includes `password_hash` or plaintext password
-- [ ] Failure paths covered: duplicate user, not found, invalid input
+- [x] `npm run test` passes (password, validator, user-service tests green)
+- [x] No API response or public user object includes `password_hash` or plaintext password
+- [x] Failure paths covered: duplicate user, not found, invalid input
 
 **Deliverables:**
 - `src/lib/password.ts`, `src/lib/password.test.ts`
@@ -760,6 +760,6 @@ When working with this PRD:
 ## Current Status
 
 **Last Updated:** 2026-08-28  
-**Current Phase:** Phase 2 - Core Library Layer  
-**Status:** PLANNED (Phase 1 complete — awaiting review)  
-**Next Steps:** After review/approval, commit Phase 1 to feature branch; then begin Phase 2 with failing password/validator/user-service tests
+**Current Phase:** Phase 3 - API Routes  
+**Status:** PLANNED (Phase 2 complete — awaiting review)  
+**Next Steps:** After review/approval, commit Phase 2 to feature branch; then begin Phase 3 with failing route handler tests
