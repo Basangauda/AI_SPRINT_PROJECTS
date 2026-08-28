@@ -5,9 +5,9 @@ Date last modified: 2026-08-28 (TDD / Vitest plan added)
 
 ## Overview/Problem
 
-The Quiz Maker application will be used by multiple teachers who need individual accounts before they can collaborate on a shared test bank. Today there is no way to identify who is using the application, no place to store teacher profiles, and no entry point for authenticated users to reach future quiz-building features. Teachers cannot register, sign in, or sign out, which blocks all downstream work on MCQ creation and collaboration.
 
 ---
+The Quiz Maker application will be used by multiple teachers who need individual accounts before they can collaborate on a shared test bank. Today there is no way to identify who is using the application, no place to store teacher profiles, and no entry point for authenticated users to reach future quiz-building features. Teachers cannot register, sign in, or sign out, which blocks all downstream work on MCQ creation and collaboration.
 
 ## Hypothesis
 
@@ -388,7 +388,7 @@ Add `vitest.config.ts` at the repo root (see `.cursor/skills/testing/SKILL.md`) 
 
 ---
 
-### Phase 3: API Routes - PLANNED
+### Phase 3: API Routes - COMPLETED
 
 **Objective:** Register, login, and logout endpoints implemented; route handlers fully unit-tested.
 
@@ -420,9 +420,9 @@ Add `vitest.config.ts` at the repo root (see `.cursor/skills/testing/SKILL.md`) 
 
 #### Phase exit criteria
 
-- [ ] `npm run test` passes (all three route test files green)
-- [ ] Register, login, logout return documented status codes and JSON shapes
-- [ ] Login never reveals whether username or password was wrong
+- [x] `npm run test` passes (all three route test files green)
+- [x] Register, login, logout return documented status codes and JSON shapes
+- [x] Login never reveals whether username or password was wrong
 
 **Deliverables:**
 - `src/app/api/auth/register/route.ts`, `route.test.ts`
@@ -431,7 +431,7 @@ Add `vitest.config.ts` at the repo root (see `.cursor/skills/testing/SKILL.md`) 
 
 ---
 
-### Phase 4: UI Pages - PLANNED
+### Phase 4: UI Pages - COMPLETED
 
 **Objective:** Teachers can register, log in, log out, and land on the MCQ stub; client forms covered by component tests.
 
@@ -463,9 +463,9 @@ Add `vitest.config.ts` at the repo root (see `.cursor/skills/testing/SKILL.md`) 
 
 #### Phase exit criteria
 
-- [ ] `npm run test` passes (all auth component tests green)
-- [ ] Register and login forms wire to API endpoints with error handling and redirects
-- [ ] Logout clears client display state and returns to login
+- [x] `npm run test` passes (all auth component tests green)
+- [x] Register and login forms wire to API endpoints with error handling and redirects
+- [x] Logout clears client display state and returns to login
 
 **Deliverables:**
 - `src/components/auth/register-form.tsx`, `register-form.test.tsx`
@@ -760,6 +760,6 @@ When working with this PRD:
 ## Current Status
 
 **Last Updated:** 2026-08-28  
-**Current Phase:** Phase 3 - API Routes  
-**Status:** PLANNED (Phase 2 complete — awaiting review)  
-**Next Steps:** After review/approval, commit Phase 2 to feature branch; then begin Phase 3 with failing route handler tests
+**Current Phase:** Phase 5 - Verification and Documentation  
+**Status:** PLANNED (Phase 4 complete — awaiting review)  
+**Next Steps:** After review/approval, commit Phase 4 to feature branch; then run Phase 5 full verification
