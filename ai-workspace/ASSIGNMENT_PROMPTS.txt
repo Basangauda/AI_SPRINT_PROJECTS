@@ -1,0 +1,158 @@
+AISprints Quiz Maker — AI Agent Prompts Log
+Project: AI_SPRINT_PROJECTS (Log In / Log Out / Register)
+Date: 2026-08-28
+Branch: feature/quiz-user-auth
+
+================================================================================
+PROMPT 1 — Initial requirements and technical PRD
+================================================================================
+
+Technical Requirements – Greenfield Quiz Maker Application
+
+This is part of our greenfield Quiz Maker application. The goal of this piece is to allow multiple teachers to collaborate and create a test bank consisting primarily of multiple-choice questions.
+
+Since the application will be used by multiple teachers and users, users need to be able to register, log in, and log out. For the first stage, we will focus only on this functionality and will not implement the MCQ functionality yet.
+
+User Management
+
+We will need a User table in the database. The table should contain:
+
+Primary key / user ID
+First name
+Last name
+Username
+Email address
+Group
+Password
+
+The password must be stored securely by hashing it before saving it to the database.
+
+On the frontend, which will be built later, when comparing a password during authentication, the password entered by the user will need to be hashed and compared with the stored hashed password.
+
+During registration and login, the user's credentials will be sent over HTTP using POST requests.
+
+Database
+
+The database tables required for user management need to be created through a database migration.
+
+User Service
+
+We will need a UserService that provides the base functionality for managing users.
+
+The service should provide methods to:
+
+Create users
+Update users
+Delete users
+Read user information
+
+The UserService will be backed by the database and will provide access to read and write user information.
+
+Endpoints
+
+We will need endpoints for:
+
+Register
+Login
+Logout
+
+We will also need readable views for the user-related functionality.
+
+Authentication Scope
+
+At this stage, we will keep authentication simple.
+
+We will not implement:
+
+Social logins
+Tokens
+Session management
+Cookies
+Any other session-management capabilities
+
+This is intentionally a simple implementation to get the application started.
+
+Post-Login / Registration Flow
+
+When a user successfully logs in or registers, they should be taken to a stub page for the MCQ functionality.
+
+The MCQ functionality itself will be built in the next sprint. That future work will cover creating and managing the questions.
+
+For this stage, we do not need to implement any of that functionality.
+
+This is the baseline requirement for the first stage.
+
+Deliverable
+@ai-workspace/TEMPLATE_TECHNICAL_PRD.md refer to this
+Please create a technical plan for implementing the above requirements.
+@ai-workspace/LOG_IN_LOG_OUT_PRD.md please add this PRD
+
+================================================================================
+PROMPT 2 — Add test-driven development to the PRD
+================================================================================
+
+And One of the things I'd like you to do is to implement a test driven approach for implementing this I reviewed the prd it looks good but please use our preferred testing framework and plan to and include the plan for the same in the every phase of the PRD to build out tests so that those tests in the beginning of the phase will likely be red they'll fail but as you implemented the test will start to turn green and that should give you your signal along with the acceptance criteria that we've defined to ensure that you are completing each phase successfully and use the vi test framework for unit tesing
+
+================================================================================
+PROMPT 3 — Start Phase 1 with review workflow
+================================================================================
+
+please start for phase one I want you to remember that as you go through each phase I want you to stop at the end of each phase give me a chance to review it and at my direction create a feature branch and push each face to the same feature branch so that we have a commit and a push for each phase in our implementation
+
+================================================================================
+PROMPT 4 — Feature branch name
+================================================================================
+
+feature/quiz-user-auth
+
+================================================================================
+PROMPT 5 — Phase 2 commit message
+================================================================================
+
+no commit as phase 2 chnages
+
+================================================================================
+PROMPT 6 — Phase 2 commit message (clarified)
+================================================================================
+
+put commit message as phase 2 changes
+
+================================================================================
+PROMPT 7 — Start Phase 3
+================================================================================
+
+please proced with phase 3 as you doing previously
+
+================================================================================
+PROMPT 8 — Start Phase 4 with shadcn rules
+================================================================================
+
+@.cursor/rules/shadcn.mdc refer the file and start the phase 4
+
+================================================================================
+PROMPT 9 — Commit and push Phase 4
+================================================================================
+
+yes commit and push
+
+================================================================================
+PROMPT 10 — Start Phase 5
+================================================================================
+
+start phase 5
+
+================================================================================
+PROMPT 11 — Remote D1 migration and deploy
+================================================================================
+
+D! migration in to the cloud flare and also need to deploy the code
+
+================================================================================
+PROMPT 12 — Export prompts for assignment
+================================================================================
+
+can you give me all the promts and make it a text file i need to upload in the assignment
+
+================================================================================
+END OF PROMPTS LOG
+================================================================================

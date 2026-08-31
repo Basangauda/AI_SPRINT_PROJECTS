@@ -3,6 +3,7 @@ import {
   getUserByEmail,
   getUserByUsername,
 } from "@/lib/services/user-service";
+import { userWithoutPassword } from "@/lib/types/user";
 import { loginSchema } from "@/lib/validators/user";
 
 const INVALID_CREDENTIALS_MESSAGE = "Invalid username or password";
@@ -31,8 +32,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const { passwordHash: _passwordHash, ...publicUser } = user;
-    return Response.json({ user: publicUser }, { status: 200 });
+    return Response.json({ user: userWithoutPassword(user) }, { status: 200 });
   } catch (error) {
     console.error(error);
     return Response.json({ error: "Internal server error" }, { status: 500 });

@@ -9,6 +9,7 @@ import type {
   UserRow,
   UserWithHash,
 } from "@/lib/types/user";
+import { userWithoutPassword } from "@/lib/types/user";
 
 export class ConflictError extends Error {
   constructor(message: string) {
@@ -81,8 +82,7 @@ export async function createUser(input: CreateUserInput): Promise<User> {
     throw new Error("Failed to create user");
   }
 
-  const { passwordHash: _passwordHash, ...publicUser } = created;
-  return publicUser;
+  return userWithoutPassword(created);
 }
 
 export async function getUserById(id: string): Promise<User | null> {

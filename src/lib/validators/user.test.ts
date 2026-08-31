@@ -22,7 +22,13 @@ describe("registerSchema", () => {
   });
 
   it("rejects missing required fields", () => {
-    const { password: _password, ...incomplete } = validRegistration;
+    const incomplete = {
+      firstName: validRegistration.firstName,
+      lastName: validRegistration.lastName,
+      username: validRegistration.username,
+      email: validRegistration.email,
+      group: validRegistration.group,
+    };
     const result = registerSchema.safeParse(incomplete);
 
     expect(result.success).toBe(false);

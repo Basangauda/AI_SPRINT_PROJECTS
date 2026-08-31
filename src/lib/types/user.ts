@@ -40,3 +40,14 @@ export type UpdateUserInput = {
   group?: string;
   password?: string;
 };
+
+export function userWithoutPassword(user: UserWithHash): User {
+  return {
+    id: user.id,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    username: user.username,
+    email: user.email,
+    group: user.group,
+  };
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
@@ -13,16 +13,19 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { clearAuthUser, getAuthUser } from "@/lib/auth-session";
-import type { User } from "@/lib/types/user";
+
+function subscribeToAuthUser() {
+  return () => {};
+}
 
 export function McqStub() {
   const router = useRouter();
-  const [user, setUser] = useState<User | null>(null);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
-
-  useEffect(() => {
-    setUser(getAuthUser());
-  }, []);
+  const user = useSyncExternalStore(
+    subscribeToAuthUser,
+    getAuthUser,
+    () => null
+  );
 
   async function handleLogout() {
     setIsLoggingOut(true);

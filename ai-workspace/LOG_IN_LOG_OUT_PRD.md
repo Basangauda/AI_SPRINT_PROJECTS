@@ -475,7 +475,7 @@ Add `vitest.config.ts` at the repo root (see `.cursor/skills/testing/SKILL.md`) 
 
 ---
 
-### Phase 5: Verification and Documentation - PLANNED
+### Phase 5: Verification and Documentation - COMPLETED
 
 **Objective:** Full test suite, lint, build, and manual preview confirm the feature is complete.
 
@@ -489,11 +489,11 @@ Add `vitest.config.ts` at the repo root (see `.cursor/skills/testing/SKILL.md`) 
 
 #### Phase exit criteria
 
-- [ ] `npm run test` passes (full suite)
-- [ ] `npm run lint` passes
-- [ ] `npm run build` passes
-- [ ] Manual preview walkthrough succeeds
-- [ ] All acceptance criteria checked
+- [x] `npm run test` passes (full suite)
+- [x] `npm run lint` passes
+- [x] `npm run build` passes
+- [x] Manual preview walkthrough succeeds
+- [x] All acceptance criteria checked
 
 **Deliverables:**
 - Green test suite across all phases
@@ -527,6 +527,7 @@ Add `vitest.config.ts` at the repo root (see `.cursor/skills/testing/SKILL.md`) 
 | `src/app/api/auth/login/route.test.ts` | Unit tests for login handler |
 | `src/app/api/auth/logout/route.ts` | Logout endpoint |
 | `src/app/api/auth/logout/route.test.ts` | Unit tests for logout handler |
+| `src/lib/auth-session.ts` | Client-side sessionStorage helpers (display-only) |
 | `src/components/auth/register-form.tsx` | Registration form (client) |
 | `src/components/auth/register-form.test.tsx` | Component tests for registration |
 | `src/components/auth/login-form.tsx` | Login form (client) |
@@ -640,25 +641,40 @@ vi.stubGlobal("fetch", vi.fn());
 - `group` maps to DB column `group_name` to avoid SQL reserved-word issues.
 - bcrypt cost factor 10 is a reasonable default; increase if performance allows.
 - UserService methods throw domain errors (e.g. `ConflictError`); route handlers map them to HTTP status codes.
+- `vitest.config.ts` uses `fileParallelism: false` on Windows to reduce worker timeout flakes.
+- `eslint.config.mjs` ignores `.wrangler/**` generated files.
+- `getAuthUser()` caches parsed sessionStorage values for stable `useSyncExternalStore` snapshots in `McqStub`.
+
+### Phase 5 preview smoke test results (local Workers runtime)
+
+Verified against `npm run preview` at `http://127.0.0.1:8787`:
+
+| Step | Endpoint | Expected | Result |
+|------|----------|----------|--------|
+| Register | POST `/api/auth/register` | 201 + user | Pass |
+| Login | POST `/api/auth/login` | 200 + user | Pass |
+| Bad login | POST `/api/auth/login` | 401 generic error | Pass |
+| Duplicate | POST `/api/auth/register` | 409 | Pass |
+| Logout | POST `/api/auth/logout` | 200 message | Pass |
 
 ---
 
 ## Acceptance Criteria
 
-- [ ] D1 `users` table exists via migration applied locally
-- [ ] User can register with first name, last name, username, email, group, and password
-- [ ] Duplicate username or email returns 409 with a clear error
-- [ ] Passwords are stored as bcrypt hashes; API responses never include password or hash
-- [ ] User can log in with username (or email) and password
-- [ ] Wrong credentials return 401 with a generic error message
-- [ ] Successful registration redirects to `/mcq` stub page
-- [ ] Successful login redirects to `/mcq` stub page
-- [ ] Logout POST succeeds and UI returns to `/login`
-- [ ] UserService supports create, read, update, and delete
-- [ ] All three auth endpoints accept POST with JSON bodies
-- [ ] `npm run test` passes (full Vitest suite for Phases 1–4)
-- [ ] `npm run lint` passes
-- [ ] `npm run build` passes
+- [x] D1 `users` table exists via migration applied locally
+- [x] User can register with first name, last name, username, email, group, and password
+- [x] Duplicate username or email returns 409 with a clear error
+- [x] Passwords are stored as bcrypt hashes; API responses never include password or hash
+- [x] User can log in with username (or email) and password
+- [x] Wrong credentials return 401 with a generic error message
+- [x] Successful registration redirects to `/mcq` stub page
+- [x] Successful login redirects to `/mcq` stub page
+- [x] Logout POST succeeds and UI returns to `/login`
+- [x] UserService supports create, read, update, and delete
+- [x] All three auth endpoints accept POST with JSON bodies
+- [x] `npm run test` passes (full Vitest suite for Phases 1–4)
+- [x] `npm run lint` passes
+- [x] `npm run build` passes
 
 ---
 
@@ -726,6 +742,12 @@ None required for this sprint. No secrets beyond D1 binding (configured in `wran
 
 _(Populate during implementation.)_
 
+### Vitest worker timeout on Windows
+
+**Problem**: `npm run test` fails with `Timeout waiting for worker to respond`  
+**Cause**: Parallel test workers under load on Windows paths with spaces  
+**Solution**: Set `fileParallelism: false` in `vitest.config.ts`; re-run `npm run test`
+
 ### D1 binding undefined at runtime
 
 **Problem:** `env.DB` is undefined when calling API routes  
@@ -760,6 +782,6 @@ When working with this PRD:
 ## Current Status
 
 **Last Updated:** 2026-08-28  
-**Current Phase:** Phase 5 - Verification and Documentation  
-**Status:** PLANNED (Phase 4 complete — awaiting review)  
-**Next Steps:** After review/approval, commit Phase 4 to feature branch; then run Phase 5 full verification
+**Current Phase:** All phases complete  
+**Status:** COMPLETED  
+**Next Steps:** Commit Phase 5 verification fixes; feature ready for review/merge
