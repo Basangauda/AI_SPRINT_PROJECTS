@@ -1,5 +1,5 @@
-import { McqStub } from "@/components/auth/mcq-stub";
+import { McqManagement } from "@/components/mcq/mcq-management";
 
 export default function McqPage() {
-  return <McqStub />;
+  return <McqManagement />;
 }
