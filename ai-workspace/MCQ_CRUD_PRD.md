@@ -595,7 +595,7 @@ Extend existing file (or add `migrations/mcq-schema.test.ts`) to assert:
 
 ---
 
-### Phase 3: API Routes - PLANNED
+### Phase 3: API Routes - COMPLETED
 
 **Objective:** All six MCQ endpoints implemented and route-tested.
 
@@ -613,8 +613,8 @@ Extend existing file (or add `migrations/mcq-schema.test.ts`) to assert:
 - `src/app/api/mcq/[id]/attempts/route.ts`, `route.test.ts`
 
 **Exit criteria:**
-- [ ] Documented request/response shapes match implementation
-- [ ] All route failure paths tested
+- [x] Documented request/response shapes match implementation
+- [x] All route failure paths tested
 
 ---
 
@@ -888,7 +888,7 @@ When implementing from this PRD:
 
 ## Current Status
 
-**Last Updated:** 2026-09-04  
-**Current Phase:** Phase 2 complete — Types, Validators, and McqService  
+**Last Updated:** 2026-09-07  
+**Current Phase:** Phase 3 complete — API Routes  
 **Status:** IN PROGRESS  
-**Next Steps:** User reviews Phase 2 changes; then proceed to Phase 3 (API Routes)
+**Next Steps:** User reviews Phase 3 changes; then proceed to Phase 4 (UI Components and Pages)
