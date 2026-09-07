@@ -573,7 +573,7 @@ Extend existing file (or add `migrations/mcq-schema.test.ts`) to assert:
 
 ---
 
-### Phase 2: Types, Validators, and McqService - PLANNED
+### Phase 2: Types, Validators, and McqService - COMPLETED
 
 **Objective:** Core library layer with full unit test coverage.
 
@@ -589,9 +589,9 @@ Extend existing file (or add `migrations/mcq-schema.test.ts`) to assert:
 - `src/lib/services/mcq-service.ts`, `mcq-service.test.ts`
 
 **Exit criteria:**
-- [ ] All validator rules enforced
-- [ ] Service CRUD and attempt methods covered with mocked D1
-- [ ] `is_correct` on attempts set only by service from choice row
+- [x] All validator rules enforced
+- [x] Service CRUD and attempt methods covered with mocked D1
+- [x] `is_correct` on attempts set only by service from choice row
 
 ---
 
@@ -889,6 +889,6 @@ When implementing from this PRD:
 ## Current Status
 
 **Last Updated:** 2026-09-04  
-**Current Phase:** Phase 1 complete — Database Migration and Schema Tests  
+**Current Phase:** Phase 2 complete — Types, Validators, and McqService  
 **Status:** IN PROGRESS  
-**Next Steps:** User reviews Phase 1 changes; then proceed to Phase 2 (Types, Validators, McqService)
+**Next Steps:** User reviews Phase 2 changes; then proceed to Phase 3 (API Routes)
