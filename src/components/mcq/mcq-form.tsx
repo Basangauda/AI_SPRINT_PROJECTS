@@ -39,11 +39,11 @@ function buildInitialChoices(initialMcq?: McqWithChoices): ChoiceField[] {
 
 function getInitialCorrectIndex(initialMcq?: McqWithChoices): string {
   if (!initialMcq) {
-    return "0";
+    return "";
   }
 
   const correctIndex = initialMcq.choices.findIndex((choice) => choice.isCorrect);
-  return String(Math.max(correctIndex, 0));
+  return correctIndex === -1 ? "" : String(correctIndex);
 }
 
 export function McqForm({ mode, mcqId, initialMcq }: McqFormProps) {
@@ -79,9 +79,13 @@ export function McqForm({ mode, mcqId, initialMcq }: McqFormProps) {
 
     setChoices((current) => current.filter((_, currentIndex) => currentIndex !== index));
     setCorrectIndex((current) => {
+      if (current === "") {
+        return current;
+      }
+
       const currentIndex = Number(current);
       if (currentIndex === index) {
-        return "0";
+        return "";
       }
       if (currentIndex > index) {
         return String(currentIndex - 1);
@@ -93,6 +97,11 @@ export function McqForm({ mode, mcqId, initialMcq }: McqFormProps) {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError(null);
+
+    if (correctIndex === "") {
+      setError("Select which choice is the correct answer");
+      return;
+    }
 
     const payload = {
       name,
@@ -169,6 +178,9 @@ export function McqForm({ mode, mcqId, initialMcq }: McqFormProps) {
 
           <Field>
             <FieldLabel>Choices</FieldLabel>
+            <p className="text-sm text-muted-foreground">
+              Enter the answer choices, then use the radio button to mark the correct answer.
+            </p>
             <RadioGroup
               value={correctIndex}
               onValueChange={setCorrectIndex}
@@ -179,11 +191,13 @@ export function McqForm({ mode, mcqId, initialMcq }: McqFormProps) {
                   key={choice.key}
                   className="flex items-start gap-3 rounded-lg border border-input p-3"
                 >
-                  <RadioGroupItem
-                    value={String(index)}
-                    aria-label={`Mark choice ${index + 1} as correct`}
-                    className="mt-2"
-                  />
+                  <div className="mt-2 flex flex-col items-center gap-1">
+                    <RadioGroupItem
+                      value={String(index)}
+                      aria-label={`Mark choice ${index + 1} as correct`}
+                    />
+                    <span className="text-xs text-muted-foreground">Correct</span>
+                  </div>
                   <div className="flex flex-1 flex-col gap-2">
                     <FieldLabel htmlFor={`choice-${index}`}>
                       Choice {index + 1}

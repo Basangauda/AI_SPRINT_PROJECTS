@@ -37,6 +37,44 @@ describe("McqForm", () => {
     expect(screen.getAllByLabelText(/choice text/i)).toHaveLength(2);
   });
 
+  it("tells the user the radio buttons select the correct answer", () => {
+    render(<McqForm mode="create" />);
+
+    expect(screen.getByText(/correct answer/i)).toBeInTheDocument();
+  });
+
+  it("does not preselect a correct answer in create mode", () => {
+    render(<McqForm mode="create" />);
+
+    for (const radio of screen.getAllByRole("radio")) {
+      expect(radio).not.toBeChecked();
+    }
+  });
+
+  it("preselects the existing correct answer in edit mode", () => {
+    render(<McqForm mode="edit" mcqId="mcq-1" initialMcq={sampleMcq} />);
+
+    expect(
+      screen.getByRole("radio", { name: /mark choice 2 as correct/i })
+    ).toBeChecked();
+  });
+
+  it("blocks saving when no correct answer is selected", async () => {
+    const user = userEvent.setup();
+    render(<McqForm mode="create" />);
+
+    await user.type(screen.getByLabelText(/name/i), sampleMcq.name);
+    await user.type(screen.getByLabelText(/question/i), sampleMcq.question);
+    await user.type(screen.getAllByLabelText(/choice text/i)[0], "Mitochondria");
+    await user.type(screen.getAllByLabelText(/choice text/i)[1], "Chloroplast");
+    await user.click(screen.getByRole("button", { name: /^save$/i }));
+
+    expect(
+      await screen.findByText(/select which choice is the correct answer/i)
+    ).toBeInTheDocument();
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
   it("allows adding choices up to six and disables add at the maximum", async () => {
     const user = userEvent.setup();
     render(<McqForm mode="create" />);
@@ -138,6 +176,7 @@ describe("McqForm", () => {
     const user = userEvent.setup();
     render(<McqForm mode="create" />);
 
+    await user.click(screen.getByRole("radio", { name: /mark choice 1 as correct/i }));
     await user.click(screen.getByRole("button", { name: /^save$/i }));
 
     expect(await screen.findByText(/validation failed/i)).toBeInTheDocument();
