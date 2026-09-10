@@ -669,7 +669,7 @@ Extend existing file (or add `migrations/mcq-schema.test.ts`) to assert:
 | Unit tests | `npm run test` | 105 passed, 18 files |
 | Lint | `npm run lint` | Pass, no findings |
 | Build | `npm run build` | Pass, TypeScript clean |
-| Deploy | `npm run deploy` | Pass, version `c5fdfd23-9b73-4235-a517-4eb6210a6d71` |
+| Deploy | `npm run deploy` | Pass, version `da049671-043c-4401-8e1d-54b1e693ed6d` |
 
 **Deployed URL:** https://ai_sprint_quiz_maker.basangauda-quizmaker.workers.dev
 
